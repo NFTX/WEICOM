@@ -5,7 +5,7 @@ public class Challenge {
 	private List<Competition> competitions;
 	
 	public Challenge() {
-		competitions = new ArrayList<Competition>();
+		competitions = new ArrayList<>();
 	}
 
 	public void addCompetition(Competition comp) {
