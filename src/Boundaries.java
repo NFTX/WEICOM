@@ -1,10 +1,9 @@
-
-public final class Bondaries {
+public final class Boundaries {
 	private static final int MAX_N = 1000;
-	private static int[] maximum;
-	private static int[] minimum;
+	private static int[] maximum = new int[MAX_N+1];
+	private static int[] minimum = new int[MAX_N+1];
 	
-	private Bondaries() {
+	private Boundaries() {		
 		maximum[0] = 1; //last calculated position		
 	}
 	

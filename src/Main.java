@@ -12,7 +12,7 @@ public class Main {
 		
 		for (Iterator<Competition> iterator = challenge.getCompetition().iterator(); iterator.hasNext();) {
 			Competition comp = iterator.next();
-			Solution s = new Solution(comp.getParticipantsQuantity(),comp.getWantedPayment());
+			Solution s = comp.getSolution();
 			s.printSolution();
 		}
 	}	
