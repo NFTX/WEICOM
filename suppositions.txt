@@ -1,25 +1,28 @@
 The maximum "payment" in a game with n participants is: SUM{i^2}, i from 1 to n-1 (#1)
-Why?
-Let`s try to change this situation (increasing the final payment):
+Why? Let's see what happen when we change the result of one match:
 Assume that A won the match with B.
-Assume that x as the score of the player A and k the score of other player B.
-In this case x > k (otherwise we can't have (#1) as the final payment).
+Assume x as the score of the player A and k the score of other player B.
 The payment for them is x^2 + k^2 (#2).
 Now let`s change the the result of their match.
 Then the payment is equal (x-1)^2 + (k+1)^2 = x^2 - 2x + 1 + k^2 +2k + 1 (#3)
 How much did we increase in the payment? (#3) - (#2)
 (x^2 - 2x + 1 + k^2 +2k + 1) - (x^2 + k^2) = 2(-x + k + 1).
 Now we can see that:
-1) If x > k, then we decreased the payment
-2) else if x = k, then we increased the payment by 1
-3) else we increased the payment.
-As we assumed x > k, then we decreased the total payment, so there is no final payment greater than (#1).
-In other words we need concentrate the winnings as much as we can to get the highest payment.
+1) x > k+1 -> we decreased the payment
+2) x = k+1 -> the payment won't change.
+3) x <= k -> we increased the payment
+
+Let`s try to change this situation #1 (increasing the final payment):
+Take a player C who won D. Let A's score equals y and B's score equals z.
+In the structure to have #1 if C won D, y > z (otherwise we can't have (#1) as the final payment).
+If we change the match result, as we proofed, the final payment will decrease or not change because y > z.
+(Actually, in that case, if y = z+1, when we change their match result we don't change the structure).
+This proofs that with one change it's not possible increase the payment.
+It's clear that we can't increase the final payment with more changes
+(because of the changes to increase the payment will "undone" a previous change).
+In other words we need concentrate the winnings as much as we can to get the highest payment (what occurs in (#1)).
 
 In the same way we can discover that the lowest payment occurs at the most distributed winnings, i.e,
 
 When n%2=0: SUM{(n/2)^2+((n-2)/2)^2}, i from 1 to n/2
 When n%2=1: SUM{((n-1)/2)^2}, i from 1 to n
- 
-
-
