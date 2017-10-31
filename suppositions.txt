@@ -18,7 +18,7 @@ In other words we need concentrate the winnings as much as we can to get the hig
 
 In the same way we can discover that the lowest payment occurs at the most distributed winnings, i.e,
 
-When n%2=0: SUM{(n/2)^2+((n-2)/2)^}, i from 1 to n/2
+When n%2=0: SUM{(n/2)^2+((n-2)/2)^2}, i from 1 to n/2
 When n%2=1: SUM{((n-1)/2)^2}, i from 1 to n
  
 

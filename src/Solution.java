@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Solution {
 
 	private ArrayList<String> competitorScore;
+
 	private int n;
 	private int k;
 	
@@ -16,7 +17,7 @@ public class Solution {
 	}
 	
 	private boolean isOverMax() {
-		//TODO implement
+		
 		return n > 3;
 	}
 
