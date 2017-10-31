@@ -8,10 +8,6 @@ public final class Boundaries {
 	}
 	
 	public static int getMaximum(int n) {
-		if(n < 2 || n > MAX_N) {
-			System.err.println("Invalid value for N");
-			return -1;
-		}
 		if(maximum[n] == 0) {			 
 			fillMaxUntil(n);
 		}
@@ -28,16 +24,11 @@ public final class Boundaries {
 	}
 	
 	public static int getMinimum(int n) {
-		if(n < 2 || n > MAX_N) {
-			System.err.println("Invalid value for N");
-			return -1;
-		}
 		if(minimum[n] == 0) {			 
 			return fillMin(n);
 		} else {
 			return minimum[n];
 		}
-		
 	}
 	
 	private static int fillMin(int n) {

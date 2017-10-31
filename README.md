@@ -1,7 +1,10 @@
 # WEICOM
 Weird Competition - challenge from Code Chef
+
 Solved by NFTX.
+
 Solution available in https://github.com/NFTX/WEICOM
+
 
 Chef is attending a chess competition. There are n people take part in. Each pair of people compete once. Winner earns 1 point, loser earns 0 point. A game never ends with a draw. After all games are over, Organizer decide to award prize to each participant. The prize of each participant is the square of his points. What is all possible total money the organizer will pay for all participants? Given k, determine if there is at least one scenario that the total money the organizers will pay is exactly k? If there's any, output one of them.
 
