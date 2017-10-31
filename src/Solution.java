@@ -17,36 +17,46 @@ public class Solution {
 		min = Boundaries.getMinimum(n);
 		nextWinnerChange = 0;
 		nextLoserChange = n-1;
+		hasSolution = false;
 		stateMatrix = new int[participantsQuantity][participantsQuantity+2];
-		if(k <= max	&& k >= min) {
-			findSolution();
+		findSolution();
+	}
+	
+	private boolean isImpossible() {
+		if(k > max|| k < min) {
+			return true;
 		}
+		if((max-k)%2 == 1) { //See suppositions.txt
+			return true;
+		}
+		return false;
 	}
 	
 	private void findSolution() {
+		if(isImpossible()) {
+			return;
+		}
 		firstTrySolution();
 		int paymentDifference;
 		while(payment != k) {
+			
+			if(nextWinnerChange == nextLoserChange-1) {//Finished without solution 
+				break; //(I guess this code will be never reached)
+			}
 			paymentDifference = 2*(-stateMatrix[nextWinnerChange][n] + stateMatrix[nextLoserChange][n] + 1);
-			if(k < payment + paymentDifference) {
-				if(nextLoserChange > nextWinnerChange+1) {
-					nextLoserChange--;
-				} else if (nextLoserChange == nextWinnerChange+1) { //There is not any solution
-					hasSolution = false;
-					break;
-				} else {
-					nextLoserChange = n-1;
-					nextWinnerChange++;
-				} 
+			if(k > payment + paymentDifference || paymentDifference > 0) {
+				nextLoserChange = n-1;
+				nextWinnerChange++;
 			} else {
 				stateMatrix[nextWinnerChange][nextLoserChange] = 0;
 				stateMatrix[nextLoserChange][nextWinnerChange] = 1;
 				stateMatrix[nextWinnerChange][n]--;
 				stateMatrix[nextLoserChange][n]++;
+				nextLoserChange--;
 				payment += paymentDifference;
 				if (payment == k) { //Solution found
-					hasSolution = true;					
-				}
+					hasSolution = true;				
+				} 
 			}
 		}
 	}
