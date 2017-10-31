@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -8,12 +9,13 @@ import java.util.StringTokenizer;
 public class Main {
 
 	public static void main(String[] args) {
+		PrintWriter out = new PrintWriter(System.out);
 		Challenge challenge = readInput();
 		
 		for (Iterator<Competition> iterator = challenge.getCompetition().iterator(); iterator.hasNext();) {
 			Competition comp = iterator.next();
 			Solution s = comp.getSolution();
-			s.printSolution();
+			s.printSolution(out);
 		}
 	}	
 	private static Challenge readInput() {

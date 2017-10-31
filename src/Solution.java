@@ -1,3 +1,5 @@
+import java.io.PrintWriter;
+
 public class Solution {
 
 	private int[][] stateMatrix;
@@ -79,17 +81,17 @@ public class Solution {
 		}
 	}
 
-	public void printSolution() {
+	public void printSolution(PrintWriter out) {
 		if(hasSolution) {
 			for(int i = 0; i < n; i++) {
 				for(int j = 0; j < n; j++) {
-					System.out.print(stateMatrix[i][j]);
+					out.print(stateMatrix[i][j]);
 				}
-				System.out.println("");
+				out.println();
 			}
 			
 		} else {
-			System.out.println("-1");			
+			out.println(-1);			
 		}
 		
 	}
