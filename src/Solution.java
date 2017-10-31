@@ -1,3 +1,5 @@
+import java.io.PrintWriter;
+
 public final class Solution {
 
 	private static final int MAX_N = 1000;
@@ -12,7 +14,8 @@ public final class Solution {
 	static int nextLoserChange;
 	static boolean hasSolution;
 	
-	public static void findSolution(int participantsQuantity, int wantedPayment) {
+	
+	public static void findSolution(int participantsQuantity, int wantedPayment, PrintWriter out) {
 		n = participantsQuantity;
 		k = wantedPayment;
 		max = Boundaries.getMaximum(n);
@@ -42,7 +45,7 @@ public final class Solution {
 				}
 			}
 		}
-		printSolution();
+		printSolution(out);
 	}
 	
 	private static void firstTrySolution() {
@@ -59,16 +62,16 @@ public final class Solution {
 		}
 	}
 	
-	private static void printSolution() {
+	private static void printSolution(PrintWriter out) {
 		if(hasSolution) {
 			for(int i = 0; i < n; i++) {				
 				for(int j = 0; j < n; j++) {			
-					System.out.print(matchResult[i][j] ? "1" : "0");
+					out.print(matchResult[i][j] ? "1" : "0");
 				}
-				System.out.println();
+				out.println();
 			}
 		} else {
-			System.out.println("-1");			
+			out.println("-1");			
 		}
 	}
 }
