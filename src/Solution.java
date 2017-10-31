@@ -1,7 +1,8 @@
 public final class Solution {
 
 	private static final int MAX_N = 1000;
-	static int[][] stateMatrix = new int[MAX_N][MAX_N+1];
+	static int[] stateMatrix = new int[MAX_N+1];
+	static boolean[][] matchResult = new boolean[MAX_N][MAX_N];
 	static int payment;
 	static int n;
 	static int k;
@@ -23,19 +24,16 @@ public final class Solution {
 		if(k <= max && k >= min && (max-k)%2 == 0) {			
 			firstTrySolution();
 			int paymentDifference;
-			while(payment != k) {		
-				if(nextWinnerChange == nextLoserChange-1) {//Finished without solution 
-					break; //(I guess this code will be never reached)
-				}
-				paymentDifference = 2*(-stateMatrix[nextWinnerChange][n] + stateMatrix[nextLoserChange][n] + 1);
+			while(payment != k) {
+				paymentDifference = 2*(-stateMatrix[nextWinnerChange] + stateMatrix[nextLoserChange] + 1);
 				if(k > payment + paymentDifference || paymentDifference > 0) {
 					nextLoserChange = n-1;
 					nextWinnerChange++;
 				} else {
-					stateMatrix[nextWinnerChange][nextLoserChange] = 0;
-					stateMatrix[nextLoserChange][nextWinnerChange] = 1;
-					stateMatrix[nextWinnerChange][n]--;
-					stateMatrix[nextLoserChange][n]++;
+					matchResult[nextWinnerChange][nextLoserChange] = false;
+					matchResult[nextLoserChange][nextWinnerChange] = true;
+					stateMatrix[nextWinnerChange]--;
+					stateMatrix[nextLoserChange]++;
 					nextLoserChange--;
 					payment += paymentDifference;
 					if (payment == k) { //Solution found
@@ -44,37 +42,33 @@ public final class Solution {
 				}
 			}
 		}
-		
-		if(hasSolution) {
-			for(int i = 0; i < n; i++) {
-				for(int j = 0; j < n; j++) {
-					System.out.print(stateMatrix[i][j]);
-				}
-				System.out.println("");
-			}
-			
-		} else {
-			System.out.println("-1");			
-		}
+		printSolution();
 	}
 	
 	private static void firstTrySolution() {
 		payment = 0;
 		for(int i = 0; i < n; i++) {
-			int j = 0;
-			while(j < n){
-				if(j > i) {
-					stateMatrix[i][j] = 1;
-				} else {
-					stateMatrix[i][j] = 0;
-				}
-				j++;
+			for(int j =i+1; j < n; j++) {
+				matchResult[i][j] = true;
 			}
-			stateMatrix[i][j] = n-(i+1);
-			payment += (n-(i+1))*(n-(i+1));
+			stateMatrix[i] = n-(i+1);
+			payment += i*i; // this is the same as payment += (n-(i+1))*(n-(i+1)); in the reverse order
 		}
 		if(payment == k) {
 			hasSolution = true;
+		}
+	}
+	
+	private static void printSolution() {
+		if(hasSolution) {
+			for(int i = 0; i < n; i++) {				
+				for(int j = 0; j < n; j++) {			
+					System.out.print(matchResult[i][j] ? "1" : "0");
+				}
+				System.out.println();
+			}
+		} else {
+			System.out.println("-1");			
 		}
 	}
 }

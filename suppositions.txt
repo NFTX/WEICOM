@@ -28,3 +28,6 @@ When n%2=0: SUM{(n/2)^2+((n-2)/2)^2}, i from 1 to n/2
 When n%2=1: SUM{((n-1)/2)^2}, i from 1 to n
 
 There is one optimization based in (#4): when a change is made the difference between the old and the new value is always pair (i.e. is a multiple of 2)
+
+There is a great optimization: what should I use a matrix if the only thing I really use is the total score of each player?
+I've changed this and created a way to print the result without the matrix.
